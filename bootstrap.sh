@@ -1,4 +1,4 @@
-\cd ~/.dotfiles
+cd ~/.dotfiles
 
 # Check for changes
 git pull origin master
@@ -26,9 +26,9 @@ if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-update_tmux_plugins()
+update_tmux_plugins
 
 # Go Back to last Dir
-\cd -
+cd -
 
 
