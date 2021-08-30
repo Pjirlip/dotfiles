@@ -17,9 +17,6 @@ rsync -avh --no-perms \
 # Set symlink to tmux.conf
 ln -sfn ~/.config/tmux/tmux.conf ~/.tmux.conf;
 
-# Source immediately
-source ~/.bashrc;
-
 # Install/Upade NVim Plugs
 if ! type -P nvim; then
     vim +PlugUpdate +qall > /dev/null
@@ -32,7 +29,7 @@ if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
 fi
 
 # Update/Install TMUX Plugins 
+source ~/.conf/bash/.functions
 update_tmux_plugins
-
 
 
