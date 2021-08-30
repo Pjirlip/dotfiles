@@ -2,7 +2,7 @@
 
 update_dotfiles() {
     chmod +x ~/.dotfiles/bootstrap.sh
-    ~/.dotfiles/bootsrap.sh
+    ~/.dotfiles/bootstrap.sh
 }
 
 # Auto-ls for direcotry change
