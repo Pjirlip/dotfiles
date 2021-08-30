@@ -1,7 +1,7 @@
-cd ~/.dotfiles
+#!/bin/bash
 
-# Check for changes
-git pull origin master
+# Git pull changes
+cd ~/.dotfiles >> /dev/null && git pull origin master && cd - >> /dev/null
 
 # Rsync content of .dotfiles dir
 rsync -avh --no-perms \
@@ -14,21 +14,22 @@ rsync -avh --no-perms \
 		--exclude "LICENSE.txt" \
 		~/.dotfiles/ ~/;
 
-# Source immediately if currently in bash shell
-[[ -z "$BASH" ]] && echo "Current Shell is no Bash Shell" || source ~/.bashrc;
+# Source immediately
+source ~/.bashrc;
 
+# Install/Upade NVim Plugs
 if ! type -P nvim; then
     vim +PlugUpdate +qall > /dev/null
 fi
 
+# Install TMUX Plugin Manger if missing
 if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
-    printf "WARNING: Cannot found TPM (Tmux Plugin Manager) t default location: \$HOME/.tmux/plugins/tpm.\n Dwonloading now"
+    printf "WARNING: Cannot find TPM (Tmux Plugin Manager) at default location: \$HOME/.tmux/plugins/tpm.\n Downloading now"
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+# Update/Install TMUX Plugins 
 update_tmux_plugins
 
-# Go Back to last Dir
-cd -
 
 
