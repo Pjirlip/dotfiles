@@ -1,0 +1,4 @@
+######### Setup Default exports ##########
+
+export VISUAL="vim"
+export HISTCONTROL=ignoreboth:erasedups

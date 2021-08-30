@@ -1,0 +1,48 @@
+################## Bash ALIAS Setup ######################
+
+
+alias ..="cd .."
+alias python="python3"
+alias pip="pip3"
+alias top="htop"
+alias vim="nvim"
+alias sv="sudo nvim"
+alias lg='lazygit'
+
+alias ports="netstat -tulpn | grep 'LISTEN'"
+
+# Generate Secure Password
+alias passgen="strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo"
+
+# Search history
+alias hs="history | grep $@"
+
+# Grep color suppport
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+# Setup exa (ls replacement) and ll
+
+if ! type -P exa; then                                                             
+    alias ll="exa -bghHliSa"
+    alias ls='exa --color=always'
+else                                                                               
+    alias ll="ls -lisa"
+fi
+
+
+# Docker Aliases
+
+# general compose aliases
+alias dcb="docker-compose build"
+alias dcu="docker-compose up -d"
+alias dcuf="docker-compose up -d --force-recreate"
+alias dcub="docker-compose up --build"
+alias dcd="docker-compose down"
+alias dps="docker ps"
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Better DF -h for Systems with Docker installed (Removed Overlay Output
+alias dfh="df -h | grep -v 'docker'"
+
