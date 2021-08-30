@@ -17,6 +17,10 @@ rsync -avh --no-perms \
 # Source immediately if currently in bash shell
 [[ -z "$BASH" ]] && echo "Current Shell is no Bash Shell" || source ~/.bashrc;
 
+if ! type -P nvim; then
+    vim +PlugUpdate +qall > /dev/null
+fi
+
 # Go Back to last Dir
 cd -
 

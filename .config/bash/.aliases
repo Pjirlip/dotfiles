@@ -5,10 +5,9 @@ alias ..="cd .."
 alias python="python3"
 alias pip="pip3"
 alias top="htop"
-alias vim="nvim"
-alias sv="sudo nvim"
 alias lg='lazygit'
-
+alias ll="ls -lisa"
+alias sv="sudo vim"
 alias ports="netstat -tulpn | grep 'LISTEN'"
 
 # Generate Secure Password
@@ -22,15 +21,18 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
-# Setup exa (ls replacement) and ll
+# Setup exa (ls replacement) if installed
 
 if ! type -P exa; then                                                             
     alias ll="exa -bghHliSa"
     alias ls='exa --color=always'
-else                                                                               
-    alias ll="ls -lisa"
 fi
 
+# Setup neovim if installed
+if ! type -P nvim; then                                                             
+    alias vim="nvim"
+    alias sv='sudo nvim'
+fi
 
 # Docker Aliases
 
