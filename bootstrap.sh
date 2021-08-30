@@ -21,6 +21,13 @@ if ! type -P nvim; then
     vim +PlugUpdate +qall > /dev/null
 fi
 
+if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
+    printf "WARNING: Cannot found TPM (Tmux Plugin Manager) t default location: \$HOME/.tmux/plugins/tpm.\n Dwonloading now"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+update_tmux_plugins()
+
 # Go Back to last Dir
 \cd -
 
