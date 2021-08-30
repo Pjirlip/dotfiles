@@ -9,7 +9,6 @@ rsync -avh --no-perms \
 		--exclude ".DS_Store" \
 		--exclude ".gitignore" \
 		--exclude ".osx" \
-		--exclude "bootstrap.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE.txt" \
 		~/.dotfiles/ ~/;
