@@ -70,7 +70,6 @@ unset file;
 export PS1="\[$(tput bold)\]\[\033[38;5;9m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;35m\]@\[$(tput sgr0)\]\[\033[38;5;42m\]\H\[$(tput sgr0)\]\[\033[38;5;35m\]:\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;45m\]\w\[$(tput sgr0)\]\[\033[38;5;208m\]\n>\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 
 
-
 # Autoload TMUX Env (and Restore if connection drop)
 if [ -z "$TMUX" ] && [ $(dpkg-query -W -f='${Status}' tmux 2>/dev/null | grep -c "ok installed") -eq 1 ] && [ -n "$SSH_TTY" ] && [ -z "$NO_AUTO_TMUX" ] && [[ $- =~ i ]]; then
     tmux attach-session -t $USER || tmux new-session -s $USER
