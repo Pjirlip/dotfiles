@@ -21,7 +21,7 @@ alias egrep="egrep --color=auto"
 
 # Setup exa (ls replacement) if installed
 
-if ! type "$exa" > /dev/null;
+if type exa > /dev/null;
 then                                                             
     alias ll="exa -bghHliSa"
     alias ls='exa --color=always'
@@ -30,7 +30,7 @@ else
 fi
 
 # Setup neovim if installed
-if ! type "$nvim" > /dev/null;
+if type nvim > /dev/null;
 then                                                             
     alias vim="nvim"
     alias sv='sudo nvim'
