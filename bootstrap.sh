@@ -14,6 +14,9 @@ rsync -avh --no-perms \
 		--exclude "LICENSE.txt" \
 		~/.dotfiles/ ~/;
 
+# Set symlink to tmux.conf
+ln -sfn ~/.config/tmux/tmux.conf ~/.tmux.conf;
+
 # Source immediately
 source ~/.bashrc;
 
