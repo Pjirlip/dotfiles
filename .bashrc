@@ -43,16 +43,6 @@ if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-no
         }
 fi
 
-###################### LOAD ALIASES etc.    #########################################
-
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.config/bash/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
-
 ###################### SHOPT Settings       #########################################
 
 ### Universal Shopts ### {{{
@@ -65,6 +55,15 @@ shopt -s no_empty_cmd_completion;       # Stops empty line tab comp
 shopt -sq dirspell;                     # Tab comp can fix dir name typos
 shopt -s nocaseglob;                    # Case-insensitive globbing (used in pathname expansion)
 
+###################### LOAD ALIASES etc.    #########################################
+
+# Load the shell dotfiles, and then some:
+# * ~/config/bash/.path can be used to extend `$PATH`.
+# * ~/config/bash/.extra can be used for other settings you don’t want to commit.
+for file in ~/.config/bash/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
 ###################### FINISH #########################################
 
@@ -73,7 +72,7 @@ export PS1="\[$(tput bold)\]\[\033[38;5;9m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]\[
 
 
 # Autoload TMUX Env (and Restore if connection drop)
-if [ -z "$TMUX" ] && [ $(dpkg-query -W -f='${Status}' tmux 2>/dev/null | grep -c "ok installed") -eq 1 ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then
+if [ -z "$TMUX" ] && [ $(dpkg-query -W -f='${Status}' tmux 2>/dev/null | grep -c "ok installed") -eq 1 ] && [ -n "$SSH_TTY" ] && [ -z "$NO_AUTO_TMUX" ] && [[ $- =~ i ]]; then
     tmux attach-session -t $USER || tmux new-session -s $USER
     exit                                                                                                        
 fi 
