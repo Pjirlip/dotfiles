@@ -29,7 +29,7 @@ if [ ! -e "$HOME/.tmux/plugins/tpm" ]; then
 fi
 
 # Update/Install TMUX Plugins 
-source ~/.conf/bash/.functions
+source ~/.config/bash/.functions
 update_tmux_plugins
 
 
