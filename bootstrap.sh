@@ -4,7 +4,8 @@ cd ~/.dotfiles
 git pull origin master
 
 # Rsync content of .dotfiles dir
-rsync --avh --no-perms --exclude ".git/" \
+rsync -avh --no-perms \
+        --exclude ".git/" \
 		--exclude ".DS_Store" \
 		--exclude ".gitignore" \
 		--exclude ".osx" \
