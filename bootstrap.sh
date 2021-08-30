@@ -1,4 +1,4 @@
-cd ~/.dotfiles
+\cd ~/.dotfiles
 
 # Check for changes
 git pull origin master
@@ -22,6 +22,6 @@ if ! type -P nvim; then
 fi
 
 # Go Back to last Dir
-cd -
+\cd -
 
 
