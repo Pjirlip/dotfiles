@@ -1,5 +1,5 @@
 .config/nvim/autoload/
 ./config/bash/.extra
 .DS_Store
-
+./config/tmux/plugins/
 
