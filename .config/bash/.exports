@@ -1,5 +1,6 @@
 ######### Setup Default exports ##########
 
-export VISUAL="vim"
+export VISUAL="nvim"
+export EDITOR="nvim"
 export HISTCONTROL="ignoreboth:erasedups"
-TMUX_PLUGIN_MANAGER_PATH="~/.config/tmux/plugins"
+export TMUX_PLUGIN_MANAGER_PATH="~/.config/tmux/plugins"

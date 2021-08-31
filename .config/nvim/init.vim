@@ -22,6 +22,7 @@ let g:suda_smart_edit = 1 " Auto Sudo if no r/w permission
 let g:dashboard_default_executive = "telescope"
 let g:doom_one_terminal_colors = v:true
 let g:doom_one_cursor_coloring = v:true
+let g:ranger_map_keys = 0
 
 colorscheme tokyonight
 
@@ -47,7 +48,6 @@ set nofoldenable
 set whichwrap+=<,>,h,l,[,] "GO to next/prev Line on End/Start of Line
 set iskeyword+=-
 set signcolumn=yes
-set directory=$HOME/.vim/swapfiles//
 syntax enable
 
 set cursorline
@@ -169,4 +169,17 @@ augroup end
 
 " Set Key Modifier for Twiligh Toggle
 nnoremap <silent><leader>t <CMD> :Twilight <CR> 
+
+" Quickkeys for Opening this config File and Plugins VIM
+nnoremap <silent><leader>vc <cmd> :e $MYVIMRC <CR>
+nnoremap <silent><leader>vr <cmd> :source $MYVIMRC <CR> 
+nnoremap <silent><leader>vp <cmd> :e $HOME/.config/nvim/vim-plug/plugins.vim <CR>
+
+
+" Ranger integration
+noremap <silent><leader>r <cmd> :Ranger <CR>
+
+
+
+
 

@@ -123,5 +123,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Highlight Portion of Code
     Plug 'folke/twilight.nvim'
+    
+    " Ranger integration in VIM
+    Plug 'rbgrouleff/bclose.vim'
+    Plug 'francoiscabrol/ranger.vim'
 
 call plug#end()
+
