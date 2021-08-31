@@ -25,6 +25,7 @@ fi
 # Install TMUX Plugin Manger if missing
 if [ ! -e "$HOME/.config/tmux/plugins/tpm" ]; then
     printf "WARNING: Cannot find TPM (Tmux Plugin Manager) at default location: \$HOME/.tmux/plugins/tpm.\n Downloading now"
+    mkdir -p ~/.config/tmux/plugins/
     git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 fi
 
