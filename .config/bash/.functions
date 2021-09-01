@@ -80,10 +80,10 @@ function update_tmux_plugins() {
 
 function dcompose_update() {
     DC_SERVICES=$(docker-compose ps --services)
-    IFS="\n" read -ra DC_SERVICES <<< "$DC_SERVICES"
+    read -ra DC_SERVICES <<< "$DC_SERVICES"
     DC_SELECT=$(
         whiptail    --title "Bitte Container auswählen" \
-                    --menu "In welchem Container soll 'composer update' ausgeführt werden?" \
+                    --menu "In welchem Container soll 'composer update' ausgeführt werden?" 15 40 12 \
                     "${DC_SERVICES[@]}")
 
     if [ $? -eq 0 ]; then
