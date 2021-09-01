@@ -18,7 +18,7 @@ rsync -avh --no-perms \
 ln -sfn ~/.config/tmux/tmux.conf ~/.tmux.conf;
 
 # Install/Upade NVim Plugs
-if ! type -P nvim; then
+if type -P nvim; then
     vim +PlugUpdate +qall > /dev/null
 fi
 
