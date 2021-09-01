@@ -2,7 +2,7 @@
 
 update_dotfiles() {
     chmod +x ~/.dotfiles/bootstrap.sh
-    ~/.dotfiles/bootstrap.sh
+    . ~/.dotfiles/bootstrap.sh
 }
 
 # Auto-ls for direcotry change
@@ -79,8 +79,7 @@ function update_tmux_plugins() {
 }
 
 function dcompose_update() {
-    DC_SERVICES=$(docker-compose ps --services)
-    read -ra DC_SERVICES <<< "$DC_SERVICES"
+    read -ra DC_SERVICES <<< $(docker-compose ps --services)
     DC_SELECT=$(
         whiptail    --title "Bitte Container auswählen" \
                     --menu "In welchem Container soll 'composer update' ausgeführt werden?" 15 40 12 \

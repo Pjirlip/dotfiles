@@ -33,4 +33,5 @@ fi
 source ~/.config/bash/.functions
 update_tmux_plugins
 
+source ~/.bashrc
 
