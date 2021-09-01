@@ -79,14 +79,12 @@ function update_tmux_plugins() {
 }
 
 function utils_generate_options {
+    echo "$@"
     ARR=($@)
     declare -A options
-    index=0
     for i in "${ARR[@]}"
     do
-        options[$index]=$i
-        options[$((index+1))]=$i
-        ((index=index+2))
+        options+=($i $i)
     done
     echo "${options[@]}"
     unset $ARR
