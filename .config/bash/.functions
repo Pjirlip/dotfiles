@@ -97,11 +97,11 @@ function dcompose_update() {
     options=($(utils_generate_options ${SERVICES[@]}))
 
     if [ $? -eq 0]; then
-        SELECTED=$(whiptail --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${options[@]}" 3>&1 1>&2 2>&3)
+        SELECTED=$(dialog --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${options[@]}" 3>&1 1>&2 2>&3)
     fi
 
     if [ $? -eq 0 ]; then
-        docker-compose exec -u propeller $DC_SELECT composer update 
+        docker-compose exec -u propeller $SELECTED composer update 
     fi
 }
 
