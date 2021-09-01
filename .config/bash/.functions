@@ -84,7 +84,8 @@ function utils_generate_options {
     declare -A options
     for i in "${ARR[@]}"
     do
-        options+=($i $i)
+        options+=("$i")
+        options+=("$i")
     done
     echo "${options[@]}"
     unset $ARR
@@ -98,7 +99,7 @@ function dcompose_update() {
         SELECTED=$(dialog --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${options[@]}" 3>&1 1>&2 2>&3)
     fi
 
-    if [ $? -eq 0 ]; then
+    if [ $? -eq 0 ] && [ -v $SELECTED]; then
         docker-compose exec -u propeller $SELECTED composer update 
     fi
 }
