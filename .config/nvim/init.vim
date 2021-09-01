@@ -179,7 +179,7 @@ nnoremap <silent><leader>vp <cmd> :e $HOME/.config/nvim/vim-plug/plugins.vim <CR
 " Ranger integration
 noremap <silent><leader>r <cmd> :Ranger <CR>
 
-
-
+" Add Yank support to iterm2 Terminal in visual Mode 
+vnoremap <leader>c :OSCYank<CR>
 
 

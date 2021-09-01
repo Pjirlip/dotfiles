@@ -128,5 +128,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'rbgrouleff/bclose.vim'
     Plug 'francoiscabrol/ranger.vim'
 
+    " Yank from VISUAL Mode to ITerm2 Clipboard by OSC52
+    Plug 'ojroques/vim-oscyank'
+
 call plug#end()
 
