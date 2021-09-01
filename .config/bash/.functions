@@ -79,11 +79,11 @@ function update_tmux_plugins() {
 }
 
 function dcompose_update() {
-    read -ra DC_SERVICES <<< $(docker-compose ps --services)
-    DC_SELECT=$(
-        whiptail    --title "Bitte Container auswählen" \
-                    --menu "In welchem Container soll 'composer update' ausgeführt werden?" 15 40 12 \
-                    "${DC_SERVICES[@]}")
+    DC_SERVICES=($(docker-compose ps --services))
+    DC_SELECT=$(whiptail \
+    --title "Bitte Container auswählen" \
+    --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 \
+    "${DC_SERVICES[@]}")
 
     if [ $? -eq 0 ]; then
         docker-compose exec -u propeller $DC_SELECT composer update 
