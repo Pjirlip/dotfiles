@@ -79,7 +79,6 @@ function update_tmux_plugins() {
 }
 
 function utils_generate_options {
-    echo "$@"
     ARR=($@)
     declare -A options
     for i in "${ARR[@]}"
@@ -93,15 +92,19 @@ function utils_generate_options {
 
 function dcompose_update() {
     SERVICES=($(docker-compose ps --services))
-    OPTIONS=($(utils_generate_options ${SERVICES[@]}))
+    items=($(utils_generate_options ${SERVICES[@]}))
 
     if [ -v $OPTIONS ]; then
-        SELECTED=$(whiptail --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${OPTIONS[@]}" 3>&1 1>&2 2>&3)
+        SELECTION=$(dialog --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${items[@]}" 3>&1 1>&2 2>&3)
     fi
 
-    if [ -v $SELECTED]; then
-        docker-compose exec -u propeller $SELECTED composer update 
+    if [ -v $SELECTION ]; then
+        docker-compose exec -u propeller $SELECTION composer update 
     fi
+
+    unset $items
+    unset $options
+    unset $SELECTION
 }
 
 
