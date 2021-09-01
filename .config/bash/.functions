@@ -96,13 +96,12 @@ function dcompose_update() {
 
     echo "${items[@]}"
 
-    SELECTION=$(dialog --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${items[@]}" 3>&1 1>&2 2>&3)
-
-    docker-compose exec -u propeller $SELECTION composer update 
-
-    unset $items
-    unset $options
-    unset $SELECTION
+    SELECTION=$(dialog --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${items[@]}" 3>&2 2>&1 1>&3)
+    clear
+    
+    if [ -v $SELECTION ]; then
+        docker-compose exec -u propeller $SELECTION composer update 
+    fi
 }
 
 
