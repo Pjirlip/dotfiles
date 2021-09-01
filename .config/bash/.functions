@@ -91,14 +91,14 @@ function utils_generate_options {
 }
 
 function dcompose_update() {
-    SERVICES=($(docker-compose ps --services))
-    items=($(utils_generate_options ${SERVICES[@]}))
+    services=($(docker-compose ps --services))
+    items=($(utils_generate_options ${services[@]}))
 
     echo "${items[@]}"
 
     SELECTION=$(whiptail --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${items[@]}" 3>&2 2>&1 1>&3)
     
-    if [ -v $SELECTION ]; then
+    if ! [[ -z $SELECTION ]]; then
         docker-compose exec -u propeller $SELECTION composer update 
     fi
 }
