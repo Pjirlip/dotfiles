@@ -94,17 +94,11 @@ function dcompose_update() {
     SERVICES=($(docker-compose ps --services))
     items=($(utils_generate_options ${SERVICES[@]}))
 
-    echo "$items"
+    echo "${items[@]}"
 
-    if [ -v $items ]; then
-        SELECTION=$(dialog --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${items[@]}" 3>&1 1>&2 2>&3)
-    fi
+    SELECTION=$(dialog --menu "In welchem Container soll 'composer update' ausgeführt werden?" 20 40 15 "${items[@]}" 3>&1 1>&2 2>&3)
 
-    echo "$SELECTION"
-
-    if [ -v $SELECTION ]; then
-        docker-compose exec -u propeller $SELECTION composer update 
-    fi
+    docker-compose exec -u propeller $SELECTION composer update 
 
     unset $items
     unset $options
