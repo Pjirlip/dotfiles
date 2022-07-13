@@ -46,16 +46,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
 
-    " Inline LSP Diagnostigs
-    Plug 'folke/trouble.nvim'
-
-    " Better LSP Support (Floating Windows)
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'glepnir/lspsaga.nvim'
-
-    " Auto Setup Language Servers
-    Plug 'kabouzeid/nvim-lspinstall'
-
     " AutoCompletion
     Plug 'hrsh7th/nvim-compe'
     
