@@ -1,0 +1,61 @@
+#FUNCTIONS
+
+function goto
+  switch (echo $argv[1])
+  case mampl
+      cd /Applications/MAMP/logs
+  case git
+      cd ~/Documents/Git
+  case mpd
+      command ncmpcpp -h polyhymnia.fsi.hochschule-trier.de
+  end
+end
+
+function showPorts
+  command lsof -n -iTCP -sTCP:LISTEN -n -P
+end
+
+function showPortInfo
+  command ps -ef | grep $argv[1]
+end
+
+function dlv
+  command youtube-dl -o "~/downloads/%(title)s.%(ext)s" $argv[1]
+  cd ~/Downloads
+  for i in *.mkv
+    command ffmpeg -i "$i" -vcodec copy -acodec copy "$i.mp4"
+    command rm "$i"
+  end
+  for j in *.webm
+    command ffmpeg -i "$j" "$j.mp4"
+    command rm "$j"
+  end
+end
+
+function dla
+  command youtube-dl -x --audio-format mp3 --audio-quality 0 -o "~/downloads/%(title)s.%(ext)s" $argv[1]
+end
+
+
+function sudo
+    if test "$argv" = !!
+        eval command sudo $history[1]
+    else
+        command sudo $argv
+    end
+end
+
+function exifadd --description "exifadd <titel> <files>"
+    for i in (seq 2 (count $argv))
+        echo $argv[$i]
+        exiftool -overwrite_original_in_place -title="$argv[1]" -description="$argv[1]" -Caption-Abstract="$argv[1]" -Headline="$argv[1]" $argv[$i]
+    end
+end
+
+
+
+
+
+
+
+

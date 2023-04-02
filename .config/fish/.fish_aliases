@@ -1,0 +1,27 @@
+#Aliases
+alias ll='exa -bghHliSa'
+alias ..='cd ..'
+alias mail='open -a mail'
+alias itunes='open -a itunes'
+alias affinity='open -a affinity\ designer'
+alias tower='open -a tower'
+alias transmit='open -a transmit'
+
+alias passw="openssl rand -base64 32"
+
+alias el='exa -bghHliS'
+alias ela='exa -bghHliSa'
+alias cdf="cd $HOME.config/fish/"
+
+alias flushdns='sudo killall -HUP mDNSResponder; sleep 2; echo macOS DNS Cache Reset'
+
+alias startmamp='open -a mamp\ pro';
+alias stopmamp="osascript -e 'quit app \"MAMP PRO\"'"
+
+alias typora='open -a typora'
+alias lg='lazygit'
+
+alias python=$(brew --prefix python)/bin/python3
+
+alias vim="nvim"
+alias gpgreset='gpg-connect-agent killagent /bye; gpg-connect-agent updatestartuptty /bye; gpg-connect-agent /bye'
