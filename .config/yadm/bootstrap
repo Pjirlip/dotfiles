@@ -15,7 +15,7 @@ if [ "$system_type" = "Darwin" ]; then
     brew bundle --global --file=~/.brewfile
   fi
 
-  bash ~/.config/yadm/macos_bootstrap
+  bash ~/.config/yadm/bootstrap_mac
 
 fi
 
