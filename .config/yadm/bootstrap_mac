@@ -1,0 +1,184 @@
+#!/usr/bin/env bash
+
+# Took some lines from https://github.com/seanbreckenridge/dotfiles/blob/master/.config/yadm/mac/set-macos-defaults
+# Also see https://macos-defaults.com/ 
+
+echo "Set Macos Defaults"
+
+osascript -e 'tell application "System Preferences" to quit'
+
+## Global Connfig
+
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Show the ~/Library folder.
+chflags nohidden ~/Library
+
+# Autohide Dock, set Icon Size, set autohide animation time and disable recent apps
+defaults write com.apple.dock "autohide" -bool "true"
+defaults write com.apple.dock "tilesize" -int "40"
+defaults write com.apple.dock "autohide-time-modifier" -float "0.3"
+defaults write com.apple.dock "show-recents" -bool "false"
+
+# Fast key repeat.
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# Save screenshots to specified folder
+defaults write com.apple.screencapture location -string "${HOME}/Pictures/Screenshots"
+
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Disable the warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+
+# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
+defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# Auto-play videos when opened with QuickTime Player
+defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
+
+# Prevent Photos from opening automatically when devices are plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
+# Disable Spaces automatic rearange
+defaults write com.apple.dock "mru-spaces" -bool "false"
+
+# Disable ask for TimeMachine Backup on new Disk plugged
+defaults write com.apple.TimeMachine "DoNotOfferNewDisksForBackup" -bool "true"
+
+# Disable Key Held-Down Popup
+defaults write NSGlobalDomain "ApplePressAndHoldEnabled" -bool "false" 
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Disable automatic period substitution
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Trackpad: map bottom right corner to right-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+
+
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+# Show indicator lights for open applications in the Dock
+defaults write com.apple.dock show-process-indicators -bool true
+
+
+####### AppStore ######
+
+# Turn on app auto-update
+defaults write com.apple.commerce AutoUpdate -bool true
+
+# Download newly available updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+####### Safari #######
+
+# Enable the Develop menu and the Web Inspector in Safari
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+
+# Add a context menu item for showing the Web Inspector in web views
+defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+# Warn about fraudulent websites
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+# Privacy: don’t send search queries to Apple
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
+# Set fullURL on Safari
+defaults write com.apple.safari "ShowFullURLInSmartSearchField" -bool "true"
+
+# Enable “Do Not Track”
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+
+
+####### Set Hot corners ########
+
+# Bottom left screen corner → Lockscreen
+defaults write com.apple.dock wvous-bl-corner -int 13
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# Top left screen corner → Mission Control
+defaults write com.apple.dock wvous-tl-corner -int 2
+defaults write com.apple.dock wvous-tl-modifier -int 0
+
+
+###### Finder ######
+
+# Set Quit Option for Finder
+defaults write com.apple.finder "QuitMenuItem" -bool "true"
+
+# Show File Extensions
+defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
+
+# Show Path on Bottom of Finder
+defaults write com.apple.finder "ShowPathbar" -bool "true"
+
+# Always open everything in Finder's column view
+defaults write com.apple.Finder FXPreferredViewStyle clmv
+# Flwv ▸ Cover Flow View
+# Nlsv ▸ List View
+# clmv ▸ Column View
+# icnv ▸ Icon View
+
+# Keep folders on Top when filtering by name
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
+
+# Restrict search to current folder
+defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf"
+
+# Disable File Exteniosn warning when renaming
+defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
+
+# Show Icons in Finder Titlebar
+defaults write com.apple.universalaccess "showWindowTitlebarIcons" -bool "true"
+
+# Smaller Finder Sibear-Icons
+defaults write NSGlobalDomain "NSTableViewDefaultSizeMode" -int "1"
+
+# Disable Desktop Icons
+defaults write com.apple.finder CreateDesktop false
+
+# Disable window animations and Get Info animations
+defaults write com.apple.finder DisableAllAnimations -bool true
+
+# Kill affected apps
+for app in "Dock" \
+	"Finder" \
+	"Mail" \
+	"Messages" \
+	"Photos" \
+	"Safari" \
+	"Terminal" \
+	"Transmission" \
+	"Calendar"; do
+	killall "${app}" &>/dev/null
+done

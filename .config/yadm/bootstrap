@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/usr/bin/env bash
 
 system_type=$(uname -s)
 
@@ -16,8 +15,29 @@ if [ "$system_type" = "Darwin" ]; then
     brew bundle --global --file=~/.brewfile
   fi
 
+  bash ~/config/yadm/macos_bootstrap
+
 fi
 
 
+
+# Link tmux conf
+ln -sfn ~/.config/tmux/tmux.conf ~/.tmux.conf;
+
+
+# Install TMUX Plugin Manger if missing
+if [ ! -e "$HOME/.config/tmux/plugins/tpm" ]; then
+    printf "WARNING: Cannot find TPM (Tmux Plugin Manager) at default location: \$HOME/.tmux/plugins/tpm.\n Downloading now"
+    mkdir -p ~/.config/tmux/plugins/
+    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+fi
+
+# Install Tmux Plugins
+echo "Install TPM plugins"
+tmux new -d -s __noop >/dev/null 2>&1 || true 
+tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.config/tmux/plugins"
+"$HOME"/.config/tmux/plugins/tpm/bin/install_plugins || true
+tmux kill-session -t __noop >/dev/null 2>&1 || true
+printf "OK: Completed\n"
 
 
