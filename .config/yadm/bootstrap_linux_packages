@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# Install Packages
+
+LOCAL_BIN_PATH="~/.local/bin"
+mkdir -p $LOCAL_BIN_PATH
+
+# Ask first if general programms should be installed 
+echo "Do you want to install basic packages in ~/.local/bin? (Type 'y' or any other Key for decline)"
+read x
+if [ "$x" = "y" ]
+then 
+
+    if [ $(uname -m) == 'x86_64' ];
+    then 
+        cd ~
+        # Install neovim
+        if ! command -v nvim >/dev/null 2>&1; then
+            echo "Installing neovim AppImage"
+            curl -LO "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
+            mv nvim.appimage $LOCAL_BIN_PATH/nvim
+            chmod u+x $LOCAL_BIN_PATH/nvim
+        fi
+        
+        # Install nnn file Browser
+        if ! command -v nnn >/dev/null 2>&1; then
+            echo "Installing nnn filebrowser"
+            curl -LO "https://github.com/jarun/nnn/releases/download/v4.7/nnn-nerd-static-4.7.x86_64.tar.gz"
+            tar -xzf nnn-nerd-static-4.7.x86_64.tar.gz
+            mv nnn-nerd-static $LOCAL_BIN_PATH/nnn
+            chmod u+x $LOCAL_BIN_PATH/nnn
+            rm nnn-*.tar.gz
+        fi
+        
+        # Install jsonquery (jq)
+        if ! command -v jq >/dev/null 2>&1; then
+            echo "Installing jsonquery (jq)"
+            curl -LO "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
+            mv jq-linux64 $LOCAL_BIN_PATH/jq
+            chmod u+x $LOCAL_BIN_PATH/jq
+        fi
+        
+        # Install RipGrep
+        if ! command -v rg >/dev/null 2>&1; then
+            echo "Installing ripgrep (rg)"
+            curl -LO "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
+            tar -xzf ripgrep.*.tar.gz 
+            mv ripgrep-*/rg $LOCAL_BIN_PATH/rg
+            chmod u+x $LOCAL_BIN_PATH/rg
+            rm ripgrep-*.tar.gz
+        fi
+        
+        # Install bpytop
+        if command -v pip3 >/dev/null 2>&1; then
+                pip3 install bpytop --upgrade
+        fi
+
+        # Install starship prompt
+        if ! command -v starship >/dev/null 2>&1; then
+            curl -LO "curl -LO https://github.com/starship/starship/releases/download/v1.13.1/starship-x86_64-unknown-linux-musl.tar.gz"
+            tar -xzf starship-*.tar.gz
+            mv starship $LOCAL_BIN_PATH/starship
+            chmod u+x $LOCAL_BIN_PATH/starship
+            rm starship*.tar.gz
+        fi
+    fi 
+
+fi
+
+chown -R $(whoami):$(id -g) $LOCAL_BIN_PATH
+

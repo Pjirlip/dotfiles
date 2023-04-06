@@ -20,6 +20,9 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 
+if [ "$system_type" = "Linux" ]; then
+    bash ~/.config/yadm/bootstrap_linux_packages
+fi
 
 ################################
 ##### Setup TMUX  ##############
@@ -54,5 +57,3 @@ if ! command -v starship >/dev/null 2>&1; then
     echo "Installing Starship"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
-
-
