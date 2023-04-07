@@ -10,16 +10,23 @@ source ~/.config/fish/.fish_functions
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
-set EDITOR nvim
-set ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX YES
+set -x EDITOR nvim
+set -x VISUAL nvim
+set -x ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX YES
+
+set -x NNN_TERMINAL iterm
+set -x NNN_PLUG "p:preview-tui"
+set -x NNN_FIFO /tmp/nnn.fifo
+set -x NNN_OPENER "$HOME/.config/nnn/plugins/nuke"
+
 set fish_greeting
 
-set PYENV_ROOT $(brew --prefix openssh)/bin/pyenv
-set PATH $(pyenv root)/shims:$PATH
-set PATH $(brew --prefix openssh)/bin:$PATH
+set -x PYENV_ROOT $(brew --prefix openssh)/bin/pyenv
+set -x PATH $(pyenv root)/shims:$PATH
+set -x PATH $(brew --prefix openssh)/bin:$PATH
 
-set GPG_TTY $(tty)
-set SSH_AUTH_SOCK {$HOME}/.gnupg/S.gpg-agent.ssh
+set -x GPG_TTY $(tty)
+set -x SSH_AUTH_SOCK {$HOME}/.gnupg/S.gpg-agent.ssh
 
 starship init fish | source
 

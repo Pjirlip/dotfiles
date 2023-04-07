@@ -50,10 +50,3 @@ tmux kill-session -t __noop >/dev/null 2>&1 || true
 printf "OK: Completed\n"
 
 
-##################################
-#### Setup Starship ##############
-##################################
-if ! command -v starship >/dev/null 2>&1; then
-    echo "Installing Starship"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi

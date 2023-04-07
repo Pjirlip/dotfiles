@@ -72,15 +72,15 @@ unset file;
 
 
 # Autoload TMUX Env (and Restore if connection drop)
-if [ -z "$TMUX" ] && [ $(command -v tmux >/dev/null 2>&1) -eq 1 ] && [ -n "$SSH_TTY" ] && [ -z "$NO_AUTO_TMUX" ] && [[ $- =~ i ]]; then
+if [ -z "$TMUX" ] && $(command -v tmux >/dev/null 2>&1) && [ -n "$SSH_TTY" ] && [ -z "$NO_AUTO_TMUX" ] && [[ $- =~ i ]]; then
     tmux attach-session -t $USER || tmux new-session -s $USER
     exit                                                                                                        
 elif command -v starship >/dev/null 2>&1; then
-    local major="${BASH_VERSINFO[0]}"
-    local minor="${BASH_VERSINFO[1]}"
-    local starship_path=$(which starship | head -n 1 | cut -d " " -f 1)
+    bash_version_major="${BASH_VERSINFO[0]}"
+    bash_version_minor="${BASH_VERSINFO[1]}"
+    starship_path=$(which starship | head -n 1 | cut -d " " -f 1)
 
-    if ((major > 4)) || { ((major == 4)) && ((minor >= 1)); }; then
+    if (($bash_version_major > 4)) || { (($bash_version_major == 4)) && (($bash_version_minor >= 1)); }; then
         source <($starship_path init bash --print-full-init)
     else
         source /dev/stdin <<<"$($starship_path init bash --print-full-init)"
