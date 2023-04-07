@@ -1,0 +1,58 @@
+################## Bash ALIAS Setup ######################
+
+
+alias ..="cd .."
+alias python="python3"
+alias pip="pip3"
+alias top="gotop"
+alias ncdu="gdu"
+alias lg='lazygit'
+alias ports="netstat -tulpn | grep 'LISTEN'"
+
+# Generate Secure Password
+alias passgen="strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo"
+
+# Search history
+alias hs="history | grep"
+
+# Better grep
+alias grep="rg --color=auto"
+
+alias t="tail -n 30"
+alias tf="tail -n 30 --follow"
+
+alias cd="cd -P"
+
+# Setup exa (ls replacement) if installed
+if command -v exa >/dev/null 2>&1; then
+    alias ll="exa -bghHliSa"
+    alias ls='exa --color=always'
+else
+    alias ll="ls -lisa"
+fi
+
+# Setup neovim if installed
+if command -v nvim >/dev/null 2>&1; then 
+then                                                             
+    alias vim="nvim"
+    alias sv='sudo nvim'
+else
+    alias sv="sudo vim"
+fi
+
+# Docker Aliases
+
+# Set docker-compose alias for newer docker versions with build in dcoker compose plugin
+if ! command -v docker-compose >/dev/null 2>&1; then 
+then                                                             
+    alias docker-compose="docker compose"
+fi
+
+alias dcu="docker-compose up -d"
+alias dcuf="docker-compose up -d --force-recreate"
+alias dcd="docker-compose down"
+alias dps="docker ps"
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Better DF -h for Systems with Docker installed (Removed Overlay Output
+alias dfh="df -h | rg -v 'docker'"

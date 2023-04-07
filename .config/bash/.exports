@@ -1,0 +1,12 @@
+######### Setup Default exports ##########
+
+export VISUAL="nvim"
+export EDITOR="nvim"
+export PAGER="less -Ri"
+export TERMINAL="xterm"
+export HISTCONTROL="ignoreboth:erasedups"
+export TMUX_PLUGIN_MANAGER_PATH="$HOME/.config/tmux/plugins"
+
+export NNN_OPENER="$HOME/.config/nnn/plugins/nuke"
+export NNN_FIFO="/tmp/nnn.fifo"
+export NNN_PLUG='p:preview-tui'
