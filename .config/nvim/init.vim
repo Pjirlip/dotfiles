@@ -51,7 +51,9 @@ filetype indent on
 
 " Setup NerdTree & File Explorer
 nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <silent><Space> :NnnPicker<CR>
+nnoremap <silent><leader>s :NvimTreeToggle<CR> 
+nnoremap <silent><Space> :NvimTreeFocus<CR>
+nnoremap <silent><leader>n :NnnPicker<CR>
 
 " Setup Telescope / Findings
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -126,7 +128,7 @@ autocmd BufWritePost *.js,*.jsx,*.py,*.vue ALEFix
 " nnoremap <silent><Tab> za <CR>
 
 " Train Tracks =)
-nnoremap <silent><leader>k <CMD> :call train#show_matches(['w', 'j', 'b', 'e', '^', 'H', 'M', 'L', ']', '[', ']]', '{', '}', '[['])<CR>
+"nnoremap <silent><leader>k <CMD> :call train#show_matches(['w', 'j', 'b', 'e', '^', 'H', 'M', 'L', ']', '[', ']]', '{', '}', '[['])<CR>
 
 " Setup Scrollbar
 augroup ScrollbarInit
