@@ -1,6 +1,9 @@
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
 
 require("mason").setup()
+require("mason-lspconfig").setup()
 
 require("formatter").setup {
     ["*"] = {
@@ -23,8 +26,11 @@ require("trouble").setup {}
 
 require("which-key").setup{
     triggers_blacklist = {
-    i = { ","},
-  },
+        i = { ","},
+    },
+    window = {
+        border = "single"
+    }
 }
 
 
@@ -110,8 +116,8 @@ require('nvim-treesitter.configs').setup {
 
 if vim.fn.PlugLoaded("toggleterm") == true then
     require("toggleterm").setup{
-        size = 20,
-          open_mapping = [[<C-t>]],
+          size = 20,
+          open_mapping = [[<c-t>]],
           hide_numbers = true, 
           shade_filetypes = {},
           shade_terminals = true,
@@ -119,16 +125,14 @@ if vim.fn.PlugLoaded("toggleterm") == true then
           start_in_insert = true,
           insert_mappings = true, 
           persist_size = true,
-          direction = 'horizontal',
+          direction = 'float',
           close_on_exit = true,
           shell = vim.o.shell,
           float_opts = {
             border = 'double',
-            winblend = 0,
-            highlights = {
-              border = "Normal",
-              background = "Normal",
-            }
+            width=300,
+            height=200,
+            zindex=1
           }
     }
 
@@ -170,6 +174,25 @@ require("bufferline").setup{
         }
       }
 }
+
+require("nvim-tree").setup({
+    sort_by = "case_sensitive",
+    renderer = {
+        group_empty = true,
+    },
+    filters = {
+        dotfiles = false,
+    },
+    view = {
+        side = "left",
+        width = 30,
+        cursorline = true
+    },
+    diagnostics = {
+        enable = true,
+        show_on_dirs = true
+    }
+})
 
 vim.opt.listchars = {
     eol = "↴",
@@ -216,5 +239,8 @@ require('dashboard').setup {
      },
     },
 }
+
+
+
 
 

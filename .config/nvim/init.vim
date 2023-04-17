@@ -5,13 +5,6 @@ source $HOME/.config/nvim/lua/setup.lua
 set termguicolors
 
 let mapleader=","
-"let g:nvim_tree_auto_open = 1
-"let g:nvim_tree_auto_close = 1
-"let g:nvim_tree_follow = 1
-"let g:nvim_tree_indent_markers = 1
-"let g:nvim_tree_git_hl = 1
-"let g:nvim_tree_group_empty = 1
-"let g:nvim_tree_add_trailing = 1
 let g:tokyonight_style = "night"
 let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer", "NvimTree"]
 let g:tokyonight_terminal_colors = 1
@@ -21,59 +14,6 @@ let g:dashboard_default_executive = "telescope"
 let g:doom_one_terminal_colors = v:true
 let g:doom_one_cursor_coloring = v:true
 
-if exists('g:vscode')
-
-else
-    colorscheme tokyonight-night
-    set foldmethod=expr
-    set foldexpr=nvim_treesitter#foldexpr()
-    set nofoldenable
-    set whichwrap+=<,>,h,l,[,] "GO to next/prev Line on End/Start of Line
-
-    " Setup NerdTree
-    nnoremap <C-n> :NvimTreeToggle<CR>
-    nnoremap <leader>r :NvimTreeRefresh<CR>
-    nnoremap <leader>n :NvimTreeFindFile<CR>
-    nnoremap <silent><Space> :NnnPicker<CR>
-    set cursorline
-    hi CursorLineNr   term=bold ctermfg=Yellow gui=bold guifg=Yellow
-
-    nnoremap <leader>ff <cmd>Telescope find_files<cr>
-    nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-    nnoremap <leader>fb <cmd>Telescope buffers<cr>
-    nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-    " LSP Additons Setup
-    nnoremap <silent><leader>h <cmd> :Lspsaga lsp_finder<CR>
-    nnoremap <silent><leader>a <cmd> :Lspsaga code_action<CR>
-    nnoremap <silent><leader>d <cmd> :Lspsaga hover_doc<CR>
-    nnoremap <silent><leader>lr <cmd> :Lspsaga rename<CR>
-    nnoremap <silent><leader>ls <cmd> :Lspsaga signature_help<CR>
-    nnoremap <silent> K <cmd> :Lspsaga hover_doc<CR>
-    nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
-    nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
-
-    " Use completion-nvim in every buffer
-    set completeopt=menuone,noselect
-    nnoremap <silent><leader>g <cmd> :LazyGit<CR>
-    nnoremap <silent><leader>t <cmd> :ToggleTerm<CR>
-
-    "NavBar Mapping for next/prev
-    nnoremap <silent><M-left>   <CMD> :BufferLineCyclePrev<CR>
-    nnoremap <silent><M-right>  <CMD> :BufferLineCycleNext<CR>
-    nnoremap <silent><M-up>     <CMD> :Bwipeout<CR>
-    inoremap <silent><M-left>   <CMD> :BufferLineCyclePrev<CR>
-    inoremap <silent><M-right>  <CMD> :BufferLineCycleNext<CR>
-    inoremap <silent><M-up>     <CMD> :Bwipeout<CR>
-
-    " AutoCompletion Mappings
-    inoremap <silent><expr> <C-Space> compe#complete()
-    inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-    inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-    inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-    inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
-endif
 
 set hidden
 set number
@@ -93,6 +33,15 @@ set mouse=a
 set tabstop=4 shiftwidth=4 expandtab
 set iskeyword+=-
 set signcolumn=yes
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
+set whichwrap+=<,>,h,l,[,] "GO to next/prev Line on End/Start of Line
+
+set cursorline
+hi CursorLineNr   term=bold ctermfg=Yellow gui=bold guifg=Yellow
+
+colorscheme tokyonight-night
 syntax enable
 
 " file type recognition
@@ -100,7 +49,47 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" Disable accidental Cursor Position on WIndows Focus
+" Setup NerdTree & File Explorer
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <silent><Space> :NnnPicker<CR>
+
+" Setup Telescope / Findings
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" LSP Additons Setup
+nnoremap <silent><leader>h <cmd> :Lspsaga lsp_finder<CR>
+nnoremap <silent><leader>a <cmd> :Lspsaga code_action<CR>
+nnoremap <silent><leader>d <cmd> :Lspsaga hover_doc<CR>
+nnoremap <silent><leader>lr <cmd> :Lspsaga rename<CR>
+nnoremap <silent><leader>ls <cmd> :Lspsaga signature_help<CR>
+nnoremap <silent> K <cmd> :Lspsaga hover_doc<CR>
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+
+" Use completion-nvim in every buffer
+set completeopt=menuone,noselect
+nnoremap <silent><leader>g <cmd> :LazyGit<CR>
+nnoremap <silent><leader>t <cmd> :ToggleTerm direction="float"<CR>
+
+"NavBar Mapping for next/prev/close
+nnoremap <silent><M-left>   <CMD> :BufferLineCyclePrev<CR>
+nnoremap <silent><M-right>  <CMD> :BufferLineCycleNext<CR>
+nnoremap <silent><M-up>     <CMD> :Bwipeout<CR>
+inoremap <silent><M-left>   <CMD> :BufferLineCyclePrev<CR>
+inoremap <silent><M-right>  <CMD> :BufferLineCycleNext<CR>
+inoremap <silent><M-up>     <CMD> :Bwipeout<CR>
+
+" AutoCompletion Mappings
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+" Disable accidental Cursor Position on Windows Focus
 augroup NO_CURSOR_MOVE_ON_FOCUS
   au!
   au FocusLost * let g:oldmouse=&mouse | set mouse=
@@ -118,12 +107,7 @@ smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j
 imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
-nnoremap <silent><leader>q <CMD> :q!<CR>
-nnoremap <silent><leader>w <CMD> :w!<CR>
-nnoremap <silent><leader>x <CMD> :wq!<CR>
-
 " EsLint Setup 
-
 let g:ale_linters = {
 \   'javascript': ['eslint']
 \}
@@ -139,7 +123,7 @@ let g:ale_javascript_prettier_use_local_config = 1
 autocmd BufWritePost *.js,*.jsx,*.py,*.vue ALEFix
 
 " Folding
-nnoremap <silent><Tab> za <CR>
+" nnoremap <silent><Tab> za <CR>
 
 " Train Tracks =)
 nnoremap <silent><leader>k <CMD> :call train#show_matches(['w', 'j', 'b', 'e', '^', 'H', 'M', 'L', ']', '[', ']]', '{', '}', '[['])<CR>
@@ -156,7 +140,6 @@ augroup end
 nnoremap <silent><leader>vc <cmd> :e $MYVIMRC <CR>
 nnoremap <silent><leader>vr <cmd> :source $MYVIMRC <CR> 
 nnoremap <silent><leader>vp <cmd> :e $HOME/.config/nvim/vim-plug/plugins.vim <CR>
-
 
 " Add Yank support to iterm2 Terminal in visual Mode 
 xnoremap <silent><leader>c :OSCYankVisual <CR>
@@ -179,3 +162,21 @@ nnoremap <silent><leader>u :UndotreeToggle<CR>
 " Marks handling
 nnoremap <silent><leader>ml :Telescope marks <CR>
 nnoremap <silent><leader>md :delmarks A-Z0-9 <CR>
+
+" Set special save comand for iterm integration
+noremap  <silent><C-s> :w<CR>
+inoremap <silent><C-s> <ESC>:w<CR>i
+
+" Escape from Terminal
+tnoremap <silent><leader>t <C-\><C-n>:ToggleTerm<CR>
+
+" Auto open nvim-tree, when opening directory
+function! OpenNvimTree()
+  if argc() == 1 && isdirectory(argv()[0])
+    NvimTreeFindFile
+  endif
+endfunction
+
+autocmd VimEnter * silent call OpenNvimTree()
+
+

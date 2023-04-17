@@ -32,11 +32,12 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Doom One Color Theme
     Plug 'NTBBloodbath/doom-one.nvim'
 
+
     " File Parser for syntax highlighting based on language
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     Plug 'kyazdani42/nvim-web-devicons' " for file icons
-    "Plug 'kyazdani42/nvim-tree.lua', Cond(!exists('g:vscode'))
+    Plug 'kyazdani42/nvim-tree.lua', Cond(!exists('g:vscode'))
 
     " Show possible Key Mappings
     Plug 'folke/which-key.nvim'
@@ -60,6 +61,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Packger for LSP Server and more 
     Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
 
     " Autoformatter
     Plug 'mhartington/formatter.nvim'
@@ -150,6 +152,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     
     " Better marks
     Plug 'chentoast/marks.nvim'
+
+    "Keep first line of functions visible for better block visibility
+    Plug 'wellle/context.vim'
 
 
 call plug#end()

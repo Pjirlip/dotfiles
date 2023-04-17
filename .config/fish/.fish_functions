@@ -53,6 +53,10 @@ function exifadd --description "exifadd <titel> <files>"
 end
 
 
+function mdpreview --description "Preview Markdown with glow and rerender on file changes"
+    ls *.md | entr -c glow "$argv[1]"
+end
+
 function n --wraps nnn --description 'support nnn quit and change directory'
     # Block nesting of nnn in subshells
     if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
