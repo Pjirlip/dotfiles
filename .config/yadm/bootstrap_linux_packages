@@ -2,7 +2,7 @@
 
 # Install Packages
 
-LOCAL_BIN_PATH="~/.local/bin"
+LOCAL_BIN_PATH="$HOME/.local/bin"
 mkdir -p $LOCAL_BIN_PATH
 
 # Ask first if general programms should be installed 
@@ -44,7 +44,7 @@ then
         if ! command -v rg >/dev/null 2>&1; then
             echo "Installing ripgrep (rg)"
             curl -LO "https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz"
-            tar -xzf ripgrep.*.tar.gz 
+            tar -xzf ripgrep-*.tar.gz 
             mv ripgrep-*/rg $LOCAL_BIN_PATH/rg
             chmod u+x $LOCAL_BIN_PATH/rg
             rm ripgrep-*.tar.gz
@@ -57,7 +57,7 @@ then
 
         # Install starship prompt
         if ! command -v starship >/dev/null 2>&1; then
-            curl -LO "curl -LO https://github.com/starship/starship/releases/download/v1.13.1/starship-x86_64-unknown-linux-musl.tar.gz"
+            curl -LO "https://github.com/starship/starship/releases/download/v1.13.1/starship-x86_64-unknown-linux-musl.tar.gz"
             tar -xzf starship-*.tar.gz
             mv starship $LOCAL_BIN_PATH/starship
             chmod u+x $LOCAL_BIN_PATH/starship
