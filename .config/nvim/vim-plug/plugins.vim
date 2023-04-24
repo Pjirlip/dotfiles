@@ -115,7 +115,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'Xuyuanp/scrollbar.nvim', Cond(!exists('g:vscode'))
 
     " Auto-Session
-    Plug 'rmagatti/auto-session', Cond(!exists('g:vscode'))
+    " Plug 'rmagatti/auto-session', Cond(!exists('g:vscode'))
 
     " Auto Sudo File if no w/r permissions
 

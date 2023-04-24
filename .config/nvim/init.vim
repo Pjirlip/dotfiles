@@ -183,3 +183,4 @@ endfunction
 
 autocmd VimEnter * silent call OpenNvimTree()
 
+
