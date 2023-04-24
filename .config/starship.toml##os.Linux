@@ -2,6 +2,7 @@ format = """
 [](#9A348E)\
 [  ](bg:#9A348E fg:#090c0c)\
 $username\
+$hostname\
 [](bg:#DA627D fg:#9A348E)\
 $directory\
 [](fg:#DA627D bg:#FCA17D)\
