@@ -58,17 +58,19 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Better LSP Support (Floating Windows)
     Plug 'neovim/nvim-lspconfig'
     Plug 'glepnir/lspsaga.nvim', Cond(!exists('g:vscode'))
-
-    " Packger for LSP Server and more 
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-vsnip'
+    Plug 'hrsh7th/vim-vsnip'
 
     " Autoformatter
     Plug 'mhartington/formatter.nvim'
 
-    " AutoCompletion
-    Plug 'hrsh7th/nvim-compe'
-    
     " Toggle a Terminal
     Plug 'akinsho/nvim-toggleterm.lua', Cond(!exists('g:vscode'))
 
@@ -84,10 +86,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Add Emmet_Like HTML Completion
     Plug 'mattn/emmet-vim'
-
-    " Snippet Support
-    Plug 'hrsh7th/vim-vsnip'
-    Plug 'hrsh7th/vim-vsnip-integ'
 
     " EsLint Integration
     Plug 'dense-analysis/ale', Cond(!exists('g:vscode'))
@@ -120,8 +118,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'rmagatti/auto-session', Cond(!exists('g:vscode'))
 
     " Auto Sudo File if no w/r permissions
-    Plug 'lambdalisue/suda.vim', Cond(!exists('g:vscode'))
 
+    Plug 'lambdalisue/suda.vim', Cond(!exists('g:vscode'))
     " Dashboard
     Plug 'glepnir/dashboard-nvim', Cond(!exists('g:vscode'))
 
@@ -138,7 +136,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'ojroques/vim-oscyank', Cond(!exists('g:vscode'))
 
     " JS Import Support
-    Plug 'ludovicchabant/vim-gutentags', Cond(!exists('g:vscode'))
     Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}, Cond(!exists('g:vscode'))
 
     " NNN Filebrwoser support
@@ -155,6 +152,15 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     "Keep first line of functions visible for better block visibility
     Plug 'wellle/context.vim'
+
+    " Rusttools
+    Plug 'simrat39/rust-tools.nvim'
+
+    " CTag Mangament
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'preservim/tagbar'
+
+
 
 
 call plug#end()

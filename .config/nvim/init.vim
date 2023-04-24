@@ -85,11 +85,11 @@ inoremap <silent><M-right>  <CMD> :BufferLineCycleNext<CR>
 inoremap <silent><M-up>     <CMD> :Bwipeout<CR>
 
 " AutoCompletion Mappings
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+"inoremap <silent><expr> <C-Space> compe#complete()
+"inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+"inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+"inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+"inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " Disable accidental Cursor Position on Windows Focus
 augroup NO_CURSOR_MOVE_ON_FOCUS
@@ -115,10 +115,8 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = ['eslint']
-
 let g:ale_sign_error = '🅧'
 let g:ale_sign_warning = '⚠'
-
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 
@@ -127,7 +125,7 @@ autocmd BufWritePost *.js,*.jsx,*.py,*.vue ALEFix
 " Folding
 " nnoremap <silent><Tab> za <CR>
 
-" Train Tracks =)
+," Train Tracks =)
 "nnoremap <silent><leader>k <CMD> :call train#show_matches(['w', 'j', 'b', 'e', '^', 'H', 'M', 'L', ']', '[', ']]', '{', '}', '[['])<CR>
 
 " Setup Scrollbar
@@ -139,7 +137,7 @@ augroup ScrollbarInit
 augroup end
 
 " Quickkeys for Opening this config File and Plugins VIM
-nnoremap <silent><leader>vc <cmd> :e $MYVIMRC <CR>
+nnoremap <silent><leader>ve <cmd> :e $MYVIMRC <CR>
 nnoremap <silent><leader>vr <cmd> :source $MYVIMRC <CR> 
 nnoremap <silent><leader>vp <cmd> :e $HOME/.config/nvim/vim-plug/plugins.vim <CR>
 
@@ -149,6 +147,8 @@ xnoremap <silent><leader>c :OSCYankVisual <CR>
 " Move lines quick up and down
 nnoremap <silent><S-Up> :m .-2 <CR>
 nnoremap <silent><S-Down> :m .+1 <CR>
+inoremap <silent><S-Up> :m .-2 <CR>
+inoremap <silent><S-Down> :m .+1 <CR>
 
 " Center View when searching / jumping / doing stuff
 nnoremap n nzzzv 
@@ -160,6 +160,8 @@ nnoremap <silent><Down> <Down>zz
 
 " Toogle Undotree Window
 nnoremap <silent><leader>u :UndotreeToggle<CR> 
+
+nnoremap <silent><leader>b :TagbarToggle<CR>
 
 " Marks handling
 nnoremap <silent><leader>ml :Telescope marks <CR>
@@ -180,5 +182,4 @@ function! OpenNvimTree()
 endfunction
 
 autocmd VimEnter * silent call OpenNvimTree()
-
 
