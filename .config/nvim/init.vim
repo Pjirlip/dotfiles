@@ -1,4 +1,5 @@
 set nocompatible
+
 source $HOME/.config/nvim/vim-plug/plugins.vim
 source $HOME/.config/nvim/lua/setup.lua
 
@@ -51,9 +52,12 @@ filetype indent on
 
 " Setup NerdTree & File Explorer
 nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <silent><leader>s :NvimTreeToggle<CR> 
-nnoremap <silent><Space> :NvimTreeFocus<CR>
-nnoremap <silent><leader>n :NnnPicker<CR>
+"nnoremap <silent><leader>s :NvimTreeToggle<CR> 
+"nnoremap <silent><Space> :NvimTreeToggle<CR>
+"nnoremap <silent><Space> :NnnPicker<CR>
+nnoremap <silent><Space> <cmd>Telescope find_files<CR>
+nnoremap <silent><leader>n :NnnPicker %:p:h<CR>
+nnoremap <silent><leader>sb :NvimTreeFocus<CR>
 
 " Setup Telescope / Findings
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -71,8 +75,6 @@ nnoremap <silent> K <cmd> :Lspsaga hover_doc<CR>
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 
-" Use completion-nvim in every buffer
-set completeopt=menuone,noselect
 nnoremap <silent><leader>g <cmd> :LazyGit<CR>
 nnoremap <silent><leader>t <cmd> :ToggleTerm direction="float"<CR>
 
@@ -168,11 +170,14 @@ nnoremap <silent><leader>ml :Telescope marks <CR>
 nnoremap <silent><leader>md :delmarks A-Z0-9 <CR>
 
 " Set special save comand for iterm integration
-noremap  <silent><C-s> :w<CR>
-inoremap <silent><C-s> <ESC>:w<CR>i
+noremap  <silent><C-s> :w!<CR>
+inoremap <silent><C-s> <ESC>:w!<CR>i
 
 " Escape from Terminal
 tnoremap <silent><leader>t <C-\><C-n>:ToggleTerm<CR>
+
+" ALe Fix JS Errors/Warning
+noremap <silent><leader>cf :ALEFix <CR>
 
 " Auto open nvim-tree, when opening directory
 function! OpenNvimTree()
@@ -183,4 +188,16 @@ endfunction
 
 autocmd VimEnter * silent call OpenNvimTree()
 
+" ChatGPT 
+noremap <silent><leader>xc :ChatGPT <CR> 
+noremap <silent><leader>xe :ChatGPTEditWithInstructions <CR> 
+
+
+" Auto-Session Lens+
+nnoremap <silent><leader>ss <cmd>lua require("auto-session.session-lens").search_session()<CR>
+
+" Copilot Next/Prev 
+inoremap <silent> <S-Right> <Plug>(copilot-next)
+inoremap <silent> <S-Left> <Plug>(copilot-previous)
+nnoremap <silent> <S-Space> :NnnPicker %:p:h<CR>
 

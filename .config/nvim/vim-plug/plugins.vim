@@ -1,3 +1,4 @@
+
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -67,6 +68,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-vsnip'
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'nvim-lua/diagnostic-nvim'
 
     " Autoformatter
     Plug 'mhartington/formatter.nvim'
@@ -91,7 +93,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'dense-analysis/ale', Cond(!exists('g:vscode'))
 
     " Better Register Management
-    Plug 'gennaro-tedesco/nvim-peekup', Cond(!exists('g:vscode'))
+    "Plug 'gennaro-tedesco/nvim-peekup', Cond(!exists('g:vscode'))
 
     " Show Hex Colors
     Plug 'norcalli/nvim-colorizer.lua'
@@ -105,20 +107,13 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " LazyGit Integration
     Plug 'kdheepak/lazygit.nvim', Cond(!exists('g:vscode'))
 
-    " Vim fur Dummis
-    Plug 'tjdevries/train.nvim'
-
     " Faster Search/Jump To in Files
     "Plug 'ggandor/lightspeed.nvim'
 
     " Scrollbar for VIM
     Plug 'Xuyuanp/scrollbar.nvim', Cond(!exists('g:vscode'))
 
-    " Auto-Session
-    " Plug 'rmagatti/auto-session', Cond(!exists('g:vscode'))
-
     " Auto Sudo File if no w/r permissions
-
     Plug 'lambdalisue/suda.vim', Cond(!exists('g:vscode'))
     " Dashboard
     Plug 'glepnir/dashboard-nvim', Cond(!exists('g:vscode'))
@@ -129,9 +124,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Highlight Portion of Code
     Plug 'folke/twilight.nvim'
     
-    " Ranger integration in VIM
-    "Plug 'rbgrouleff/bclose.vim'
-
     " Yank from VISUAL Mode to ITerm2 Clipboard by OSC52
     Plug 'ojroques/vim-oscyank', Cond(!exists('g:vscode'))
 
@@ -150,9 +142,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Better marks
     Plug 'chentoast/marks.nvim'
 
-    "Keep first line of functions visible for better block visibility
-    Plug 'wellle/context.vim'
-
     " Rusttools
     Plug 'simrat39/rust-tools.nvim'
 
@@ -160,7 +149,20 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'ludovicchabant/vim-gutentags'
     Plug 'preservim/tagbar'
 
+    " "Good" White theme for presentations
+    Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
 
+    " ChatGPT integration & needet UI Package for that
+    Plug 'jackMort/ChatGPT.nvim'
+    Plug 'MunifTanjim/nui.nvim'
+    
+    " Auto Sessions
+    Plug 'rmagatti/auto-session'
 
+    Plug 'github/copilot.vim'
+
+    " Rsync for local editing
+    Plug 'kenn7/vim-arsync'
+    Plug 'prabirshrestha/async.vim'
 
 call plug#end()

@@ -2,6 +2,8 @@ set -g -x PATH /usr/local/bin $PATH
 set -g -x GOPATH "$HOME/.go"
 set -g -x GOROOT $(brew --prefix go)/libexec
 
+set -g -x XDG_CONFIG_HOME "$HOME/.config"
+
 set -g -x PATH $GOPATH/bin $PATH
 set -g -x PATH $GOROOT/bin $PATH
 

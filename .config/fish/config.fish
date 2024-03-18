@@ -15,7 +15,7 @@ set -x VISUAL nvim
 set -x ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX YES
 
 set -x NNN_TERMINAL iterm
-set -x NNN_PLUG "p:preview-tui"
+set -x NNN_PLUG "p:preview-tui;o:fzopen;f:finder"
 set -x NNN_FIFO /tmp/nnn.fifo
 set -x NNN_OPENER "$HOME/.config/nnn/plugins/nuke"
 
@@ -29,4 +29,12 @@ set -x GPG_TTY $(tty)
 set -x SSH_AUTH_SOCK {$HOME}/.gnupg/S.gpg-agent.ssh
 
 starship init fish | source
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#if test -f /opt/homebrew/anaconda3/bin/conda
+#    eval /opt/homebrew/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+#end
+# <<< conda initialize <<<
 

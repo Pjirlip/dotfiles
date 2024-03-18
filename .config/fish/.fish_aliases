@@ -1,4 +1,3 @@
-#Aliases
 alias ll='exa -bghHliSa'
 alias ..='cd ..'
 alias mail='open -a mail'
@@ -24,4 +23,9 @@ alias lg='lazygit'
 alias python=$(brew --prefix python)/bin/python3
 
 alias vim="nvim"
+alias v="nvim"
 alias gpgreset='gpg-connect-agent killagent /bye; gpg-connect-agent updatestartuptty /bye; gpg-connect-agent /bye'
+
+#alias fhsql='rlwrap sqlplus dippelp/tladj@pcork1'
+alias fhsql='usql or://dippelp:tladj@cork.fh-trier.de:1521/pcork1'
+
