@@ -55,7 +55,7 @@ nnoremap <C-n> :NvimTreeToggle<CR>
 "nnoremap <silent><leader>s :NvimTreeToggle<CR> 
 "nnoremap <silent><Space> :NvimTreeToggle<CR>
 "nnoremap <silent><Space> :NnnPicker<CR>
-nnoremap <silent><Space> <cmd>Telescope find_files<CR>
+nnoremap <silent><Space> <cmd>Telescope find_files hidden=true no_ignore=true<CR>
 nnoremap <silent><leader>n :NnnPicker %:p:h<CR>
 nnoremap <silent><leader>sb :NvimTreeFocus<CR>
 
@@ -179,14 +179,6 @@ tnoremap <silent><leader>t <C-\><C-n>:ToggleTerm<CR>
 " ALe Fix JS Errors/Warning
 noremap <silent><leader>cf :ALEFix <CR>
 
-" Auto open nvim-tree, when opening directory
-function! OpenNvimTree()
-  if argc() == 1 && isdirectory(argv()[0])
-    NvimTreeFindFile
-  endif
-endfunction
-
-autocmd VimEnter * silent call OpenNvimTree()
 
 " ChatGPT 
 noremap <silent><leader>xc :ChatGPT <CR> 

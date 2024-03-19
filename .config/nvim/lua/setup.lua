@@ -157,6 +157,7 @@ require("bufferline").setup{
 
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
+    hijack_netrw = false,
     renderer = {
         group_empty = true,
     },
@@ -249,7 +250,17 @@ require'marks'.setup {
 }
 
 
-require("nnn").setup()
+require("nnn").setup({
+    explorer = {
+        cmd = "nnn -aHPp",
+        fullscreen = false,
+    },
+    picker = {
+        cmd = "tmux new-session nnn -aHPp",
+        fullscreen = false
+    },
+    replace_netrw = "picker"
+})
 
 require('dashboard').setup {
       theme = 'hyper',
@@ -419,6 +430,25 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
     defaults = {
+        file_ignore_patterns = {
+            "node_modules", "build", "dist", "yarn.lock", ".git", ".cache", ".idea", ".vscode", ".DS_Store", ".next", ".nuxt", ".github", ".gitlab", ".gitattributes", ".gitmodules", ".gitkeep", ".gitconfig"
+        },
+        vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            '--hidden'
+        },
+        pickers = {
+            find_files = {
+                no_ignore=true,
+                hidden = true,
+            },
+        },
         mappings = {
             i = {
                 ["<esc>"] = actions.close,
