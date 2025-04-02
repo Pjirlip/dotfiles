@@ -9,6 +9,14 @@ vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
 vim.g.copilot_filetypes = {
     ["*"] = false,
+    ["vue"] = true,
+    ["html"] = true,
+    ["css"] = true,
+    ["scss"] = true,
+    ["sass"] = true,
+    ["less"] = true,
+    ["stylus"] = true,
+    ["javascriptreact"] = true,
     ["javascript"] = true,
     ["typescript"] = true,
     ["lua"] = true,
@@ -18,6 +26,7 @@ vim.g.copilot_filetypes = {
     ["c++"] = true,
     ["go"] = true,
     ["python"] = true,
+    ["markdown"] = true
 }
 
 
@@ -26,6 +35,16 @@ local lsp_defaults = lspconfig.util.default_config
 
 require("mason").setup()
 require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+    function(server)
+        lspconfig[server].setup({})
+    end,
+   
+    ["rust_analyzer"] = function ()
+        require("rust-tools").setup {}
+    end
+}
+
 
 require("formatter").setup {
     ["*"] = {
@@ -49,35 +68,12 @@ require("trouble").setup {}
   
 
 require("which-key").setup{
-    triggers_blacklist = {
-        i = { ","},
-    },
-    window = {
+    win = {
         border = "single"
     }
 }
 
-
 local wk = require("which-key")
-
-wk.register({
-    c = {
-      name = "ChatGPT",
-        c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-        e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
-        g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
-        t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
-        k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
-        d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
-        a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
-        o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
-        s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
-        f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
-        x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
-        r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
-        l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
-      }
-})
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -340,7 +336,7 @@ cmp.setup({
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
-      { name = 'nvim_lsp', group_index = 2, max_item_count = 5},
+      { name = 'nvim_lsp', group_index = 3, max_item_count = 5},
       { name = "path", group_index = 3, max_item_count = 2},
       { name = 'vsnip', grop_index = 3 },
       { name = 'buffer', group_index = 4, max_item_count = 3}
@@ -355,10 +351,10 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 
 
 -- Setup LSP Servers -- 
-lspconfig.tsserver.setup({}) 
-lspconfig.rust_analyzer.setup({})
-lspconfig.cssls.setup({})
-lspconfig.astro.setup({})
+--lspconfig.tsserver.setup({}) 
+--lspconfig.rust_analyzer.setup({})
+--lspconfig.cssls.setup({})
+--lspconfig.astro.setup({})
 
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -457,8 +453,18 @@ require("telescope").setup({
     },
 })
 
--- Acccept Copilot Suggestion or Move Right
-vim.api.nvim_set_keymap('i', '<Right>', "v:lua.accept_copilot_suggestion_or_move_right()", {expr = true, noremap = true})
+-- Auto-Session Setup
+if pcall(require, "nvim-surround") then
+  require("nvim-surround").setup({})
+end
+
+-- Register vim-notify as default notify function
+if pcall(require, "notify") then
+    vim.notify = require("notify")
+end
+
+-- Acccept Copilot Suggestion or Move Right with Shift 
+vim.api.nvim_set_keymap('i', '<S-Right>', "v:lua.accept_copilot_suggestion_or_move_right()", {expr = true, noremap = true})
 
 function _G.accept_copilot_suggestion_or_move_right()
   local copilot_suggestion = vim.fn['copilot#Accept']()
@@ -468,4 +474,9 @@ function _G.accept_copilot_suggestion_or_move_right()
     return t("<Right>")
   end
 end
+
+if pcall(require, "vim-localvimrc") then
+  require("vim-localvimrc").setup({})
+end
+
 

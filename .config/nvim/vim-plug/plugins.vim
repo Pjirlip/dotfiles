@@ -42,6 +42,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     " Show possible Key Mappings
     Plug 'folke/which-key.nvim'
+    " Wanted by Which-key
+    Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
 
     " Status Line
     Plug 'hoob3rt/lualine.nvim'
@@ -152,8 +154,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " "Good" White theme for presentations
     Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
 
-    " ChatGPT integration & needet UI Package for that
-    Plug 'jackMort/ChatGPT.nvim'
     Plug 'MunifTanjim/nui.nvim'
     
     " Auto Sessions
@@ -165,4 +165,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'kenn7/vim-arsync'
     Plug 'prabirshrestha/async.vim'
 
+    Plug 'kylechui/nvim-surround'
+
+    " Allow Project Based Neovim tweaks by .lvimrc Files
+    Plug 'embear/vim-localvimrc'
+
 call plug#end()
+
